@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Fabián y Elisa</title>
+    <!-- Fuente elegante de Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fcfbfa;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            perspective: 1000px;
+        }
+        .screen {
+            position: absolute;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #f0e6d2;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 1s ease-in-out;
+            transform: translateY(20px);
+        }
+        .screen.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #c5a059;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        /* Animación del Can-Am */
+        .canam-btn {
+            width: 150px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        .canam-btn:hover {
+            transform: scale(1.05);
+        }
+        .canam-drive {
+            animation: driveOut 1.2s forwards ease-in-out;
+        }
+        @keyframes driveOut {
+            0% { transform: translateX(0) scale(1); opacity: 1; }
+            50% { transform: translateX(50px) scale(1.02); opacity: 0.8; }
+            100% { transform: translateX(400px) scale(0.9); opacity: 0; }
+        }
+        /* Estilos de las cajas de regalo */
+        .gift-box {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+            display: block;
+        }
+        .gift-box:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+        .gift-pop {
+            animation: popOpen 0.5s forwards ease-out;
+        }
+        @keyframes popOpen {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        /* Imagen del regalo final */
+        .final-gift {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        /* Botón de inicio para activar música por restricciones del navegador */
+        .start-btn {
+            background-color: #c5a059;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        .start-btn:hover {
+            background-color: #b38f4b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reproductor de Audio Oculto -->
+    <audio id="bg-music" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- PANTALLA DE INICIO (Requerida por navegadores para reproducir música) -->
+    <div class="screen active" id="screen-start">
+        <h1>Fabián & Elisa</h1>
+        <p>Bienvenidos a un espacio diseñado con mucho amor para ustedes. Por favor, suban el volumen antes de comenzar.</p>
+        <button class="start-btn" onclick="startExperience()">Abrir con Amor</button>
+    </div>
+
+    <!-- PANTALLA 1: Mensaje de Amor Inicial -->
+    <div class="screen" id="screen-1">
+        <h1>Fabián & Elisa</h1>
+        <p>El amor verdadero es un viaje que se construye día a día, y hoy celebran uno de sus capítulos más hermosos. ¡Toquen el Can-Am para empezar el recorrido!</p>
+        <img src="canam.png" alt="Can-Am" class="canam-btn" onclick="nextScreenWithCanam(1, 2)">
+    </div>
+
+    <!-- PANTALLA 2: Mensaje Especial -->
+    <div class="screen" id="screen-2">
+        <h1>Un Mensaje Especial</h1>
+        <p>Porque verlos felices nos llena el corazón, queremos hacerles un regalo un poco especial. Algo que guarde para siempre este inicio de su nueva vida juntos...</p>
+        <img src="canam.png" alt="Can-Am" class="canam-btn" onclick="nextScreenWithCanam(2, 3)">
+    </div>
+
+    <!-- PANTALLA 3: Es por esto que... -->
+    <div class="screen" id="screen-3">
+        <h1>Nuestra Sorpresa</h1>
+        <p>Es por esto que les queremos regalar algo que los acompañará en sus mejores recuerdos. ¡Estamos listos para revelar la sorpresa!</p>
+        <img src="canam.png" alt="Can-Am" class="canam-btn" onclick="nextScreenWithCanam(3, 4)">
+    </div>
+
+    <!-- PANTALLAS DE CAJAS (4 a 8) -->
+    <div class="screen" id="screen-4">
+        <h1>¡Un Regalo para Ustedes!</h1>
+        <p>Toquen la caja para abrirla...</p>
+        <img src="caja1.png" alt="Caja 1" class="gift-box" onclick="nextScreenWithBox(4, 5)">
+    </div>
+
+    <div class="screen" id="screen-5">
+        <h1>¿Qué habrá dentro?</h1>
+        <p>¡Sigan abriendo!</p>
+        <img src="caja2.png" alt="Caja 2" class="gift-box" onclick="nextScreenWithBox(5, 6)">
+    </div>
+
+    <div class="screen" id="screen-6">
+        <h1>¡Ya casi!</h1>
+        <p>Una más...</p>
+        <img src="caja3.png" alt="Caja 3" class="gift-box" onclick="nextScreenWithBox(6, 7)">
+    </div>
+
+    <div class="screen" id="screen-7">
+        <h1>¡Falta muy poco!</h1>
+        <p>¡No se detengan!</p>
+        <img src="caja4.png" alt="Caja 4" class="gift-box" onclick="nextScreenWithBox(7, 8)">
+    </div>
+
+    <div class="screen" id="screen-8">
+        <h1>¡La última caja!</h1>
+        <p>El gran secreto está aquí...</p>
+        <img src="caja5.png" alt="Caja 5" class="gift-box" onclick="nextScreenWithBox(8, 9)">
+    </div>
+
+    <!-- PANTALLA FINAL: El Regalo -->
+    <div class="screen" id="screen-9">
+        <h1>¡Felicidades!</h1>
+        <p>Con todo nuestro cariño, este es nuestro regalo para su hermosa unión:</p>
+        <img src="regalo.png" alt="Regalo Final" class="final-gift">
+    </div>
+
+    <script>
+        const music = document.getElementById('bg-music');
+
+        // Inicia la música y pasa a la primera pantalla real
+        function startExperience() {
+            music.play().catch(error => console.log("La música necesita interacción del usuario."));
+            changeScreen('screen-start', 'screen-1');
+        }
+
+        // Animación del Can-Am avanzando y cambio de pantalla
+        function nextScreenWithCanam(currentNum, nextNum) {
+            const currentScreen = document.getElementById(`screen-${currentNum}`);
+            const canam = currentScreen.querySelector('.canam-btn');
+            
+            canam.classList.add('canam-drive');
+            
+            setTimeout(() => {
+                changeScreen(`screen-${currentNum}`, `screen-${nextNum}`);
+            }, 1000); 
+        }
+
+        // Animación de la caja abriéndose (efecto pop) y cambio de pantalla
+        function nextScreenWithBox(currentNum, nextNum) {
+            const currentScreen = document.getElementById(`screen-${currentNum}`);
+            const box = currentScreen.querySelector('.gift-box');
+            
+            box.classList.add('gift-pop');
+            
+            setTimeout(() => {
+                changeScreen(`screen-${currentNum}`, `screen-${nextNum}`);
+            }, 400);
+        }
+
+        // Función genérica para alternar visibilidad de pantallas
+        function changeScreen(hideId, showId) {
+            document.getElementById(hideId).classList.remove('active');
+            document.getElementById(showId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
