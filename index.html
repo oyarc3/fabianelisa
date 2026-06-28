@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Fabián y Elisa</title>
-    <!-- Fuente elegante de Google Fonts -->
     <link href="https://googleapis.com" rel="stylesheet">
     
     <style>
@@ -15,8 +14,8 @@
         }
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #fcfbfa;
-            color: #4a4a4a;
+            background-color: #fbfaf7;
+            color: #3a3a3a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,211 +24,243 @@
             text-align: center;
             perspective: 1000px;
         }
+        
+        /* Contenedor de tarjeta más grande y elegante */
         .screen {
             position: absolute;
-            width: 90%;
-            max-width: 500px;
-            padding: 40px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #f0e6d2;
+            width: 92%;
+            max-width: 650px;
+            min-height: 400px;
+            padding: 50px 40px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.1);
+            border: 1px solid #f3ebd9;
             opacity: 0;
             pointer-events: none;
-            transition: all 1s ease-in-out;
-            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(30px) scale(0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .screen.active {
             opacity: 1;
             pointer-events: auto;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
+        
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: #c5a059;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 400;
         }
         p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
             font-weight: 300;
+            color: #555555;
+            max-width: 500px;
         }
-        /* Animación del Can-Am */
-        .canam-btn {
-            width: 150px;
+        
+        /* Botones de Aventura (Can-Am) */
+        .action-wrapper {
             cursor: pointer;
+            display: inline-block;
             transition: transform 0.3s ease;
+        }
+        .action-wrapper:hover {
+            transform: scale(1.03);
+        }
+        .btn-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c5a059;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .canam-btn {
+            width: 170px;
+            height: auto;
             display: block;
             margin: 0 auto;
         }
-        .canam-btn:hover {
-            transform: scale(1.05);
-        }
         .canam-drive {
-            animation: driveOut 1.2s forwards ease-in-out;
+            animation: driveOut 1s forwards cubic-bezier(0.42, 0, 0.58, 1);
         }
         @keyframes driveOut {
-            0% { transform: translateX(0) scale(1); opacity: 1; }
-            50% { transform: translateX(50px) scale(1.02); opacity: 0.8; }
-            100% { transform: translateX(400px) scale(0.9); opacity: 0; }
+            0% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0); }
+            40% { transform: translateX(80px) scale(1.03); opacity: 0.9; }
+            100% { transform: translateX(600px) scale(0.9); opacity: 0; filter: blur(2px); }
         }
-        /* Estilos de las cajas de regalo */
+        
+        /* Cajas de Regalo */
         .gift-box {
-            width: 200px;
+            width: 220px;
             height: auto;
             cursor: pointer;
-            transition: transform 0.5s ease;
-            margin: 0 auto;
+            transition: transform 0.4s ease;
             display: block;
         }
         .gift-box:hover {
-            transform: scale(1.05) rotate(3deg);
+            transform: scale(1.05) rotate(2deg);
         }
         .gift-pop {
-            animation: popOpen 0.5s forwards ease-out;
+            animation: popOpen 0.4s forwards ease-out;
         }
         @keyframes popOpen {
             0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1.4); opacity: 0; }
         }
-        /* Imagen del regalo final */
+        
+        /* Imagen Final */
         .final-gift {
             width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
         }
-        /* Botón de inicio para activar música por restricciones del navegador */
+        
+        /* Botón de Entrada Tradicional */
         .start-btn {
             background-color: #c5a059;
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 15px 40px;
             font-size: 1rem;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
-            transition: background 0.3s;
+            letter-spacing: 2px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
         }
         .start-btn:hover {
             background-color: #b38f4b;
+            transform: translateY(-2px);
+        }
+
+        /* Sistema de Confeti Nativo */
+        .confetti-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.8;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); }
+            100% { transform: translateY(105vh) rotate(720deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Reproductor de Audio Oculto -->
     <audio id="bg-music" loop>
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- PANTALLA DE INICIO (Requerida por navegadores para reproducir música) -->
+    <div class="confetti-container" id="confetti-box"></div>
+
+    <!-- PANTALLA DE ENTRADA -->
     <div class="screen active" id="screen-start">
         <h1>Fabián & Elisa</h1>
-        <p>Bienvenidos a un espacio diseñado con mucho amor para ustedes. Por favor, suban el volumen antes de comenzar.</p>
-        <button class="start-btn" onclick="startExperience()">Abrir con Amor</button>
+        <p>Hay momentos en la vida que merecen guardarse para siempre. Preparen sus corazones, suban el volumen y descubran lo que hemos preparado para ustedes.</p>
+        <button class="start-btn" onclick="startExperience()">Comenzar el viaje</button>
     </div>
 
-    <!-- PANTALLA 1: Mensaje de Amor Inicial -->
+    <!-- MENSAJES PROFUNDOS (PANTALLAS 1 A 10) -->
     <div class="screen" id="screen-1">
-        <h1>Fabián & Elisa</h1>
-        <p>El amor verdadero es un viaje que se construye día a día, y hoy celebran uno de sus capítulos más hermosos. ¡Toquen el Can-Am para empezar el recorrido!</p>
-        <img src="canam.png" alt="Can-Am" class="canam-btn" onclick="nextScreenWithCanam(1, 2)">
+        <h1>El Inicio del Viaje</h1>
+        <p>El amor no es solo mirarse el uno al otro, sino mirar juntos en la misma dirección. Hoy celebran el inicio del recorrido más hermoso de sus vidas.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(1, 2)">
+            <div class="btn-label">Vamos a esa aventura</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
-    <!-- PANTALLA 2: Mensaje Especial -->
     <div class="screen" id="screen-2">
-        <h1>Un Mensaje Especial</h1>
-        <p>Porque verlos felices nos llena el corazón, queremos hacerles un regalo un poco especial. Algo que guarde para siempre este inicio de su nueva vida juntos...</p>
-        <img src="canam.png" alt="Can-Am" class="canam-btn" onclick="nextScreenWithCanam(2, 3)">
+        <h1>Almas Companeras</h1>
+        <p>Encontrar a alguien con quien reír, con quien soñar y con quien superar cada bache del camino es el regalo más grande del destino. Ustedes se encontraron.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(2, 3)">
+            <div class="btn-label">Continuar el rumbo</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
-    <!-- PANTALLA 3: Es por esto que... -->
     <div class="screen" id="screen-3">
-        <h1>Nuestra Sorpresa</h1>
-        <p>Es por esto que les queremos regalar algo que los acompañará en sus mejores recuerdos. ¡Estamos listos para revelar la sorpresa!</p>
-        <img src="canam.png" alt="Can-Am" class="canam-btn" onclick="nextScreenWithCanam(3, 4)">
+        <h1>Un Vínculo Sagrado</h1>
+        <p>El matrimonio es la promesa de cuidar el corazón del otro con paciencia, ternura y un respeto absoluto, construyendo un refugio seguro contra cualquier tormenta.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(3, 4)">
+            <div class="btn-label">Seguir avanzando</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
-    <!-- PANTALLAS DE CAJAS (4 a 8) -->
     <div class="screen" id="screen-4">
-        <h1>¡Un Regalo para Ustedes!</h1>
-        <p>Toquen la caja para abrirla...</p>
-        <img src="caja1.png" alt="Caja 1" class="gift-box" onclick="nextScreenWithBox(4, 5)">
+        <h1>La Magia de los Detalles</h1>
+        <p>Los mejores recuerdos se construyen con pequeños instantes: una mirada cómplice, una mano firme que sostiene a la otra y la certeza de que nunca más caminarán solos.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(4, 5)">
+            <div class="btn-label">Acelerar el corazón</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
     <div class="screen" id="screen-5">
-        <h1>¿Qué habrá dentro?</h1>
-        <p>¡Sigan abriendo!</p>
-        <img src="caja2.png" alt="Caja 2" class="gift-box" onclick="nextScreenWithBox(5, 6)">
+        <h1>Cómplices del Destino</h1>
+        <p>Que su vida esté siempre llena de risas compartidas, de proyectos que los desafíen a crecer y de un amor tan fuerte que inspire a todos los que los rodean.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(5, 6)">
+            <div class="btn-label">Hacia el mañana</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
     <div class="screen" id="screen-6">
-        <h1>¡Ya casi!</h1>
-        <p>Una más...</p>
-        <img src="caja3.png" alt="Caja 3" class="gift-box" onclick="nextScreenWithBox(6, 7)">
+        <h1>Escribiendo Historia</h1>
+        <p>A partir de hoy, cada fotografía, cada viaje y cada amanecer juntos formarán parte de un libro maravilloso escrito por ustedes dos, hoja por hoja.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(6, 7)">
+            <div class="btn-label">Explorar más allá</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
     <div class="screen" id="screen-7">
-        <h1>¡Falta muy poco!</h1>
-        <p>¡No se detengan!</p>
-        <img src="caja4.png" alt="Caja 4" class="gift-box" onclick="nextScreenWithBox(7, 8)">
+        <h1>Fuerza Inquebrantable</h1>
+        <p>Que el amor sea siempre su motor, la paciencia su brújula y la alegría el combustible que los lleve a conquistar absolutamente cada meta que se propongan.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(7, 8)">
+            <div class="btn-label">Mantener el camino</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
     <div class="screen" id="screen-8">
-        <h1>¡La última caja!</h1>
-        <p>El gran secreto está aquí...</p>
-        <img src="caja5.png" alt="Caja 5" class="gift-box" onclick="nextScreenWithBox(8, 9)">
+        <h1>Su Propio Horizonte</h1>
+        <p>Porque verlos felices nos llena el alma, quisimos buscar una forma de congelar el tiempo y encapsular la belleza de esta hermosa etapa que están viviendo.</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(8, 9)">
+            <div class="btn-label">Acelerar la marcha</div>
+            <img src="canam.png" alt="Siguiente" class="canam-btn">
+        </div>
     </div>
 
-    <!-- PANTALLA FINAL: El Regalo -->
     <div class="screen" id="screen-9">
-        <h1>¡Felicidades!</h1>
-        <p>Con todo nuestro cariño, este es nuestro regalo para su hermosa unión:</p>
-        <img src="regalo.png" alt="Regalo Final" class="final-gift">
-    </div>
-
-    <script>
-        const music = document.getElementById('bg-music');
-
-        // Inicia la música y pasa a la primera pantalla real
-        function startExperience() {
-            music.play().catch(error => console.log("La música necesita interacción del usuario."));
-            changeScreen('screen-start', 'screen-1');
-        }
-
-        // Animación del Can-Am avanzando y cambio de pantalla
-        function nextScreenWithCanam(currentNum, nextNum) {
-            const currentScreen = document.getElementById(`screen-${currentNum}`);
-            const canam = currentScreen.querySelector('.canam-btn');
-            
-            canam.classList.add('canam-drive');
-            
-            setTimeout(() => {
-                changeScreen(`screen-${currentNum}`, `screen-${nextNum}`);
-            }, 1000); 
-        }
-
-        // Animación de la caja abriéndose (efecto pop) y cambio de pantalla
-        function nextScreenWithBox(currentNum, nextNum) {
-            const currentScreen = document.getElementById(`screen-${currentNum}`);
-            const box = currentScreen.querySelector('.gift-box');
-            
-            box.classList.add('gift-pop');
-            
-            setTimeout(() => {
-                changeScreen(`screen-${currentNum}`, `screen-${nextNum}`);
-            }, 400);
-        }
-
-        // Función genérica para alternar visibilidad de pantallas
-        function changeScreen(hideId, showId) {
-            document.getElementById(hideId).classList.remove('active');
-            document.getElementById(showId).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+        <h1>Una Huella Eterna</h1>
+        <p>Queremos hacerles un obsequio muy especial. Algo que les recuerde lo radiantes que lucen cuando se miran con la promesa de un "para siempre".</p>
+        <div class="action-wrapper" onclick="nextScreenWithCanam(9, 10)">
+            <div class="btn-label">Acercándose al destino</div>
